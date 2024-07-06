@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("DoorX") || other.CompareTag("DoorY"))
+        if (other.CompareTag("Door"))
         {
             Destroy(gameObject);
         }

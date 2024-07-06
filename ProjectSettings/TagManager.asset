@@ -11,6 +11,8 @@ TagManager:
   - Wall
   - Bullet
   - Enemy
+  - SpeedPill
+  - AttackPill
   layers:
   - Default
   - TransparentFX

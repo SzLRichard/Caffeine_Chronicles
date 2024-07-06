@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rigidBody;
     private float energy;
     private float time_since_shot = 0f;
+    private float shooting_cooldown = 0.5f;
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -43,15 +45,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        bool held_down = false;
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            held_down = true;
+        }
+        if (held_down) Shoot();
+        if (Input.GetMouseButtonUp(0))
+        {
+            held_down = false;
         }
     }
 
     void Shoot()
     {
-        if (time_since_shot < 0.5f) return;
+        if (time_since_shot < shooting_cooldown) return;
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePosition - transform.position).normalized;
@@ -69,43 +77,39 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Door"))
         {
-            energy -= 5;
-        }
-        if (other.CompareTag("DoorX"))
-        {
-            if (transform.position.x < other.transform.position.x)
+            if (other.transform.rotation.eulerAngles.z == 0)
             {
-                main_camera.transform.position += new Vector3(17.5f, 0, 0);
-                transform.position += new Vector3(2, 0, 0);
+                int szorzo = -1;
+                if (transform.position.x < other.transform.position.x) szorzo = 1;
+                main_camera.transform.position += new Vector3(17.5f * szorzo, 0, 0);
+                transform.position += new Vector3(2 * szorzo, 0, 0);
             }
             else
             {
-                main_camera.transform.position += new Vector3(-17.5f, 0, 0);
-                transform.position += new Vector3(-2, 0, 0);
-            }
-        }
-        if (other.CompareTag("DoorY"))
-        {
-            if (transform.position.y < other.transform.position.y)
-            {
-                main_camera.transform.position += new Vector3(0, 9, 0);
-                transform.position += new Vector3(0, 2, 0);
-            }
-            else
-            {
-                main_camera.transform.position += new Vector3(0, -9, 0);
-                transform.position += new Vector3(0, -2, 0);
+                int szorzo = -1;
+                if (transform.position.y < other.transform.position.y) szorzo = 1;
+                main_camera.transform.position += new Vector3(0, 9 * szorzo, 0);
+                transform.position += new Vector3(0, 2 * szorzo, 0);
             }
         }
         if (other.CompareTag("Coffee"))
         {
             other.gameObject.SetActive(false);
             energy += 20;
+        }
+        if (other.CompareTag("SpeedPill"))
+        {
+            other.gameObject.SetActive(false);
+            energy += 40;
+        }
+        if (other.CompareTag("AttackPill"))
+        {
+            other.gameObject.SetActive(false);
+            shooting_cooldown *= 0.8f;
         }
     }
 
