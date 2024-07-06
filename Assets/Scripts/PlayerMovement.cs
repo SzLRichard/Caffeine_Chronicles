@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -19,6 +20,12 @@ public class PlayerMovement : MonoBehaviour
         energy = movementSpeed;
     }
 
+    IEnumerator DestroyAfterDelay(GameObject nigga)
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(nigga);
+    }
+
     void FixedUpdate()
     {
         time_since_shot += Time.deltaTime;
@@ -36,9 +43,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("aAA");
             Shoot();
         }
     }
@@ -46,15 +52,30 @@ public class PlayerMovement : MonoBehaviour
     void Shoot()
     {
         if (time_since_shot < 0.5f) return;
-        GameObject projectile = Instantiate(projectile_prefab, transform.position, transform.rotation);
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * 10f;
+
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (mousePosition - transform.position).normalized;
+
+        GameObject projectile = Instantiate(projectile_prefab, transform.position, Quaternion.identity);
+        Bullet projectileMovement = projectile.GetComponent<Bullet>();
+
+        if (projectileMovement != null)
+        {
+            projectileMovement.SetDirection(direction);
+        }
+
+        StartCoroutine(DestroyAfterDelay(projectile));
         time_since_shot = 0;
-        Debug.Log("uefj");
     }
+
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Enemy"))
+        {
+            energy -= 5;
+        }
         if (other.CompareTag("DoorX"))
         {
             if (transform.position.x < other.transform.position.x)

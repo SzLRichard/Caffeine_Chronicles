@@ -7,6 +7,10 @@ TagManager:
   - DoorY
   - DoorX
   - Coffee
+  - Door
+  - Wall
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
