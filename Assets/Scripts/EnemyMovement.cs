@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     GameObject playerObject;
     Vector2 target;
     int health=3;
+
     void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -15,7 +16,6 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        
         target = new Vector2(playerObject.transform.position.x, playerObject.transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, target, movementSpeed * Time.deltaTime);
         if (health == 0)
@@ -29,5 +29,4 @@ public class EnemyMovement : MonoBehaviour
             health--;
         }
     }
-
 }
