@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
                 Physics2D.IgnoreCollision(thisCollider, otherCollider);
             }
         }
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
         }
