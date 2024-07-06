@@ -40,7 +40,7 @@ public class Room : MonoBehaviour
     {
         if (number_of_enemies == 0)
         {
-            string[] door_tags = { "DoorX", "DoorY" };
+            string[] door_tags = { "Door" };
             List<GameObject> matchingChildren = FindChildrenWithTags(gameObject, door_tags);
             foreach (GameObject child in matchingChildren)
             {
