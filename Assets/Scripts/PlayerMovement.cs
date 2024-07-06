@@ -108,4 +108,13 @@ public class PlayerMovement : MonoBehaviour
             energy += 20;
         }
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            energy -= 0.03f;
+            Debug.Log(energy);
+        }
+    }
 }
