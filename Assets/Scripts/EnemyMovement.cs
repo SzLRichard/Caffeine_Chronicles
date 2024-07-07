@@ -28,15 +28,7 @@ public class EnemyMovement : MonoBehaviour
     {
         RaycastHit2D ray = Physics2D.Raycast(transform.position, playerObject.transform.position - transform.position);
         if (ray.collider != null) {
-            Debug.Log(ray.collider.tag);
             lineOfSight = ray.collider.CompareTag("Player");
-            if (lineOfSight) {
-                Debug.DrawRay(transform.position, playerObject.transform.position - transform.position,Color.green);
-            }
-            else
-            {
-                Debug.DrawRay(transform.position, playerObject.transform.position - transform.position, Color.red);
-            }
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
