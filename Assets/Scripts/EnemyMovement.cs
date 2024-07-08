@@ -26,9 +26,26 @@ public class EnemyMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, playerObject.transform.position - transform.position);
-        if (ray.collider != null) {
-            lineOfSight = ray.collider.CompareTag("Player");
+        RaycastHit2D [] rayHits = Physics2D.RaycastAll(transform.position, playerObject.transform.position - transform.position);
+        foreach (RaycastHit2D hit in rayHits)
+        {
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("Hole"))
+                {
+                    continue;
+                }
+                else if (hit.collider.CompareTag("Player"))
+                {
+                    lineOfSight = true;
+                    break;
+                }
+                else
+                {
+                    lineOfSight = false;
+                    break;
+                }
+            }
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
