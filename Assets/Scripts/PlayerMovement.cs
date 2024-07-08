@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float energy;
     private float time_since_shot = 0f;
     private float shooting_cooldown = 0.5f;
+    private float ground = 1f;
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -33,8 +34,8 @@ public class PlayerMovement : MonoBehaviour
         time_since_shot += Time.deltaTime;
 
         if (energy > 60) energy = 0;
-        if (energy < 10) movementSpeed = energy;
-        else movementSpeed = 10;
+        if (energy < 10) movementSpeed = energy * ground;
+        else movementSpeed = 10 * ground;
         if (energy > 0) energy -= 1 / 60f;
         else energy = 0;
 
@@ -111,6 +112,14 @@ public class PlayerMovement : MonoBehaviour
             other.gameObject.SetActive(false);
             shooting_cooldown *= 0.8f;
         }
+        if (other.CompareTag("Ice"))
+        {
+            movementSpeed *= 0.5f;
+        }
+        if (other.CompareTag("Ice"))
+        {
+            ground = 0.333f;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -119,6 +128,13 @@ public class PlayerMovement : MonoBehaviour
         {
             energy -= 0.03f;
             Debug.Log(energy);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ice"))
+        {
+            ground = 1f;
         }
     }
 }
