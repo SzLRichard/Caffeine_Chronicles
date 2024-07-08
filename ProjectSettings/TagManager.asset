@@ -15,6 +15,7 @@ TagManager:
   - AttackPill
   - Hole
   - Ice
+  - Ground
   layers:
   - Default
   - TransparentFX
