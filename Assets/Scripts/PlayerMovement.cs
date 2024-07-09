@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 {
     //Very basic movement, good enough for prototyping
     public TextMeshProUGUI energyMeter;
+    public Timer timerScrpit;
+    public GameObject deathMenu;
     public float movementSpeed;
     public Camera main_camera;
     public GameObject projectile_prefab;
@@ -26,12 +28,12 @@ public class PlayerMovement : MonoBehaviour
         energy = movementSpeed;
     }
 
-    IEnumerator DestroyAfterDelay(GameObject nigga)
+    IEnumerator DestroyAfterDelay(GameObject obj)
     {
         yield return new WaitForSeconds(5);
-        Destroy(nigga);
+        Destroy(obj);
     }
-
+    
     void FixedUpdate()
     {
         time_since_shot += Time.deltaTime;
@@ -41,7 +43,10 @@ public class PlayerMovement : MonoBehaviour
         else movementSpeed = 10 * ground;
         if (energy > 0) energy -= 1 / 60f;
         else energy = 0;
-
+        if (energy == 0) {
+            deathMenu.SetActive(true);
+            timerScrpit.setTimerActive(false);
+        }
         inputX = Input.GetAxisRaw("Horizontal");
         inputY = Input.GetAxisRaw("Vertical");
         rigidBody.velocity = new Vector2(inputX, inputY).normalized * movementSpeed;
