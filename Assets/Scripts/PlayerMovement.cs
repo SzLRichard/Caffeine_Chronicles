@@ -4,10 +4,13 @@ using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
+
 
 public class PlayerMovement : MonoBehaviour
 {
     //Very basic movement, good enough for prototyping
+    public TextMeshProUGUI energyMeter;
     public float movementSpeed;
     public Camera main_camera;
     public GameObject projectile_prefab;
@@ -32,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         time_since_shot += Time.deltaTime;
-
+        
         if (energy > 60) energy = 0;
         if (energy < 10) movementSpeed = energy * ground;
         else movementSpeed = 10 * ground;
@@ -46,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        energyMeter.text = (energy>0?System.Math.Round(energy,2):0).ToString();
         bool held_down = false;
         if (Input.GetMouseButtonDown(0))
         {
@@ -127,7 +131,6 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             energy -= 0.03f;
-            Debug.Log(energy);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
