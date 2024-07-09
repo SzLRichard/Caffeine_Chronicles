@@ -31,7 +31,7 @@ public class EnemyMovement : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("Hole"))
+                if (hit.collider.CompareTag("Hole") || hit.collider.CompareTag("Enemy"))
                 {
                     continue;
                 }
