@@ -16020,7 +16020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2682b2b888d79eb45874c6a1e189b812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  number_of_enemies: 0
+  number_of_enemies: 1
 --- !u!4 &2060509620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4009034891018110956, guid: 3ce796282ee54514ea00415aec3a5265, type: 3}
