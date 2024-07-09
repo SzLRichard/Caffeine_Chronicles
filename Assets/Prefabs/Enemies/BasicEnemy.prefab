@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2624234512145549774}
   - component: {fileID: -8413424416562916363}
   - component: {fileID: -2096894951626612697}
-  - component: {fileID: 9001750079185154353}
+  - component: {fileID: -335641020713440119}
   m_Layer: 0
   m_Name: BasicEnemy
   m_TagString: Enemy
@@ -103,8 +103,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 574a1ef2af5f1714fb90655e46b5572c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
---- !u!58 &9001750079185154353
-CircleCollider2D:
+--- !u!70 &-335641020713440119
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,5 +160,5 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.1
+  m_Size: {x: 0.16, y: 0.25}
+  m_Direction: 0
