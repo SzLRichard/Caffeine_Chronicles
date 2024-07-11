@@ -14,11 +14,13 @@ public class Room : MonoBehaviour
     List<GameObject> FindChildrenWithTags(GameObject parent, params string[] tags)
     {
         List<GameObject> matchingChildren = new List<GameObject>();
-
-        // Iterate through children of the parent object
-        foreach (Transform child in parent.transform)
+        FindChildrenWithTagsRecursive(parent.transform, tags, matchingChildren);
+        return matchingChildren;
+    }
+    private static void FindChildrenWithTagsRecursive(Transform parent, string[] tags, List<GameObject> matchingChildren)
+    {
+        foreach (Transform child in parent)
         {
-            // Check if the child has any of the specified tags
             foreach (string tag in tags)
             {
                 if (child.CompareTag(tag))
@@ -29,10 +31,8 @@ public class Room : MonoBehaviour
             }
 
             // Recursively search child's children
-            matchingChildren.AddRange(FindChildrenWithTags(child.gameObject, tags));
+            FindChildrenWithTagsRecursive(child, tags, matchingChildren);
         }
-
-        return matchingChildren;
     }
 
     // Update is called once per frame
