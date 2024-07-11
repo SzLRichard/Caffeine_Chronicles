@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     GameObject playerObject;
     Vector2 target;
     int health=3;
-    bool lineOfSight = false;
+    public bool lineOfSight = false;
 
     void Start()
     {
