@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     public float movementSpeed=3;
     GameObject playerObject;
     Vector2 target;
-    int health=3;
+    public int health=3;
     public bool lineOfSight = false;
 
     void Start()
