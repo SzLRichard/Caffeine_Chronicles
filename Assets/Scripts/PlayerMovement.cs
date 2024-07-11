@@ -6,7 +6,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 
-
 public class PlayerMovement : MonoBehaviour
 {
     //Very basic movement, good enough for prototyping
@@ -91,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("Door"))
         {
-            if (other.transform.rotation.eulerAngles.z == 0)
+            if (other.transform.parent.rotation.eulerAngles.z == 270 || other.transform.parent.rotation.eulerAngles.z == 90)
             {
                 int szorzo = -1;
                 if (transform.position.x < other.transform.position.x) szorzo = 1;
