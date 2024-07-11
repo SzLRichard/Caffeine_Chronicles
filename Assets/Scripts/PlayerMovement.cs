@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private float time_since_shot = 0f;
     private float shooting_cooldown = 0.5f;
     private float ground = 1f;
+    private AudioSource[] audioSource;
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -69,7 +70,8 @@ public class PlayerMovement : MonoBehaviour
     void Shoot()
     {
         if (time_since_shot < shooting_cooldown) return;
-
+        audioSource = GetComponents<AudioSource>();
+        audioSource[0].Play();
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePosition - transform.position).normalized;
 
@@ -107,16 +109,22 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.CompareTag("Coffee"))
         {
+            audioSource = GetComponents<AudioSource>();
+            audioSource[1].Play();
             other.gameObject.SetActive(false);
             energy += 20;
         }
         if (other.CompareTag("SpeedPill"))
         {
+            audioSource = GetComponents<AudioSource>();
+            audioSource[1].Play();
             other.gameObject.SetActive(false);
             energy += 40;
         }
         if (other.CompareTag("AttackPill"))
         {
+            audioSource = GetComponents<AudioSource>();
+            audioSource[1].Play();
             other.gameObject.SetActive(false);
             shooting_cooldown *= 0.8f;
         }
