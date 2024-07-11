@@ -31,9 +31,10 @@ public class EnemyMovement : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("Hole") || hit.collider.CompareTag("Enemy"))
+                if (hit.collider.CompareTag("Wall") || hit.collider.CompareTag("Door"))
                 {
-                    continue;
+                    lineOfSight = false;
+                    break;
                 }
                 else if (hit.collider.CompareTag("Player"))
                 {
@@ -42,8 +43,7 @@ public class EnemyMovement : MonoBehaviour
                 }
                 else
                 {
-                    lineOfSight = false;
-                    break;
+                    continue;
                 }
             }
         }
