@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.collider.tag=="EnemyBullet")
         {
-            energy -= 5.0f;
+            energy -= 8.0f;
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
