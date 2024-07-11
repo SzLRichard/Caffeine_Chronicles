@@ -8,6 +8,5 @@ public class SceneLoader : MonoBehaviour
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("previousScene", currentScene);
         SceneManager.LoadScene(sceneName);
-        Debug.Log("Scene loadder called");
     }
 }
