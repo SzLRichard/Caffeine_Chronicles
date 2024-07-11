@@ -16,6 +16,7 @@ TagManager:
   - Hole
   - Ice
   - Ground
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

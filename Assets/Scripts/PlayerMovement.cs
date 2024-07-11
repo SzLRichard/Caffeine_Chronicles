@@ -129,14 +129,22 @@ public class PlayerMovement : MonoBehaviour
         {
             ground = 0.333f;
         }
+       
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag=="EnemyBullet")
+        {
+            energy -= 5.0f;
+        }
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            energy -= 0.03f;
+            energy -= 0.3f;
         }
+        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
