@@ -8,7 +8,7 @@ public class EnemyShooting : MonoBehaviour
     public GameObject projectile_prefab;
     EnemyMovement movementScript;
     float time_since_shot = 0f;
-    float shooting_cooldown = 0.5f;
+    public float shooting_cooldown = 1f;
     void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
