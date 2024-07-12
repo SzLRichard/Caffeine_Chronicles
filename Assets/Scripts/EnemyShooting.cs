@@ -28,8 +28,8 @@ public class EnemyShooting : MonoBehaviour
     void shoot() {
         if (time_since_shot < shooting_cooldown) return;
         Vector2 direction = (playerObject.transform.position - transform.position).normalized;
-
-        GameObject projectile = Instantiate(projectile_prefab, transform.position, Quaternion.identity);
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        GameObject projectile = Instantiate(projectile_prefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle + 90)));
         EnemyBullet projectileMovement = projectile.GetComponent<EnemyBullet>();
 
         if (projectileMovement != null)

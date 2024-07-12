@@ -77,8 +77,8 @@ public class PlayerMovement : MonoBehaviour
         audioSource[0].Play();
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePosition - transform.position).normalized;
-
-        GameObject projectile = Instantiate(projectile_prefab, transform.position, Quaternion.identity);
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        GameObject projectile = Instantiate(projectile_prefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle+90)));
         Bullet projectileMovement = projectile.GetComponent<Bullet>();
 
         if (projectileMovement != null)
