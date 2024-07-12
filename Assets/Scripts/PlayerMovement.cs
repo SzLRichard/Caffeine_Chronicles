@@ -143,7 +143,6 @@ public class PlayerMovement : MonoBehaviour
         {
             keys++;
             Destroy(other.gameObject);
-            Debug.Log(keys);
         }
        
     }
