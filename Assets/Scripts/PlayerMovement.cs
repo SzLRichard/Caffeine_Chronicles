@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private float shooting_cooldown = 0.5f;
     private float ground = 1f;
     private AudioSource[] audioSource;
-    int keys = 0;
+    int keys = 3;
     private bool held_down = false;
     void Start()
     {
