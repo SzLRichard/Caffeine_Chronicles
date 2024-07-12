@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Unnamed game
+  m_text: Caffeine Chronicles
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8549a30f4aacde24bab0191931f778d0, type: 2}
   m_sharedMaterial: {fileID: 4304628692319149538, guid: 8549a30f4aacde24bab0191931f778d0, type: 2}
