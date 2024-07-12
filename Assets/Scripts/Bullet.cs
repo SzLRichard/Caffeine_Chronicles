@@ -11,13 +11,6 @@ public class Bullet : MonoBehaviour
     {
         moveDirection = direction.normalized;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);

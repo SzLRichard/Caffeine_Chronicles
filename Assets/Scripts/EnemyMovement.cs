@@ -31,7 +31,7 @@ public class EnemyMovement : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("Wall") || hit.collider.CompareTag("Door"))
+                if (hit.collider.CompareTag("Wall") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("BossDoor"))
                 {
                     lineOfSight = false;
                     break;
