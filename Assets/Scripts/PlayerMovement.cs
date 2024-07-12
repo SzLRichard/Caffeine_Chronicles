@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float ground = 1f;
     private AudioSource[] audioSource;
     int keys = 0;
+    private bool held_down = false;
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -56,7 +57,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         energyMeter.text = (energy>0?System.Math.Round(energy,2):0).ToString();
-        bool held_down = false;
         if (Input.GetMouseButtonDown(0))
         {
             held_down = true;
