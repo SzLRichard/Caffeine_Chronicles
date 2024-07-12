@@ -17,6 +17,8 @@ TagManager:
   - Ice
   - Ground
   - EnemyBullet
+  - Key
+  - BossDoor
   layers:
   - Default
   - TransparentFX
