@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private float shooting_cooldown = 0.5f;
     private float ground = 1f;
     private AudioSource[] audioSource;
+    int keys = 0;
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -65,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
         {
             held_down = false;
         }
+        if (keys == 3)
+            GameObject.FindWithTag("BossDoor").GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     void Shoot()
@@ -90,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Door"))
+        if (other.CompareTag("Door") || other.CompareTag("BossDoor"))
         {
             if (other.transform.parent.rotation.eulerAngles.z == 270 || other.transform.parent.rotation.eulerAngles.z == 90)
             {
@@ -135,6 +138,12 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Ice"))
         {
             ground = 0.333f;
+        }
+        if (other.CompareTag("Key"))
+        {
+            keys++;
+            Destroy(other.gameObject);
+            Debug.Log(keys);
         }
        
     }

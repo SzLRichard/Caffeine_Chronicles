@@ -18,6 +18,7 @@ TagManager:
   - Ground
   - EnemyBullet
   - Key
+  - BossDoor
   layers:
   - Default
   - TransparentFX
