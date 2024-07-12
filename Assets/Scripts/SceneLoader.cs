@@ -8,5 +8,6 @@ public class SceneLoader : MonoBehaviour
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("previousScene", currentScene);
         SceneManager.LoadScene(sceneName);
+        Time.timeScale = 1f;
     }
 }

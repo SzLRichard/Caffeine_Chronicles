@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Shoot()
     {
-        if (time_since_shot < shooting_cooldown) return;
+        if (time_since_shot < shooting_cooldown || energy<=0) return;
         audioSource = GetComponents<AudioSource>();
         audioSource[0].Play();
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
