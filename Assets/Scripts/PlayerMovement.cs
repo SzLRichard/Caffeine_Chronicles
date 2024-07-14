@@ -8,7 +8,6 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //Very basic movement, good enough for prototyping
     public TextMeshProUGUI energyMeter;
     public Timer timerScrpit;
     public GameObject deathMenu;
@@ -22,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private float shooting_cooldown = 0.5f;
     private float ground = 1f;
     private AudioSource[] audioSource;
-    int keys = 3;
+    int keys = 0;
     private bool held_down = false;
     void Start()
     {
